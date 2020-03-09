@@ -1,3 +1,4 @@
+import os.path
 from math import cos
 
 import pygame
@@ -31,10 +32,12 @@ class ArmAnimation(object):
         self._x = x
         self._y = y
 
-        self._shovel = pygame.image.load("./arm_assets/shovel.png")
-        self._crank_link = pygame.image.load("./arm_assets/crank-link.png")
-        self._coupler_link = pygame.image.load("./arm_assets/coupler-link.png")
-        self._output_link = pygame.image.load("./arm_assets/output-link.png")
+        path = os.path.dirname(os.path.abspath(__file__))
+
+        self._shovel = pygame.image.load(path + "/arm_assets/shovel.png")
+        self._crank_link = pygame.image.load(path + "/arm_assets/crank-link.png")
+        self._coupler_link = pygame.image.load(path + "/arm_assets/coupler-link.png")
+        self._output_link = pygame.image.load(path + "/arm_assets/output-link.png")
         self._images = [self._shovel, self._crank_link, self._coupler_link, self._output_link]
         self._image_scale = 0.1
         self._scale_images()

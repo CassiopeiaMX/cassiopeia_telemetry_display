@@ -62,7 +62,7 @@ def setup():
 
     pygame.init()
     screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption('Cassiopeia Telemetry')
+    pygame.display.set_caption('Cassiopeia Telemetry Display')
 
     background = pygame.Surface(screen.get_size())
     background = background.convert()
@@ -76,6 +76,8 @@ def setup():
     rospy.Subscriber('cassiopeia/humidity', RelativeHumidity, humidity_callback)
     rospy.Subscriber('cassiopeia/arm_state/base_angle', Quaternion, base_angle_callback)
     rospy.Subscriber('cassiopeia/arm_state/shovel_extension', Vector3, shovel_extension_callback)
+
+    rospy.init_node('cassiopeia_telemetry_display', anonymous=False)
 
 
 def draw():
@@ -99,15 +101,15 @@ def imu_callback(msg):
 
 
 def temperature_callback(msg):
-    temperature_display.update_value(msg.temperature, msg.header.secs)
+    temperature_display.update_value(msg.temperature, msg.header.stamp.secs)
 
 
 def pressure_callback(msg):
-    pressure_display.update_value(msg.fluid_pressure, msg.header.secs)
+    pressure_display.update_value(msg.fluid_pressure, msg.header.stamp.secs)
 
 
 def humidity_callback(msg):
-    humidity_display.update_value(msg.relative_humidity, msg.header.secs)
+    humidity_display.update_value(msg.relative_humidity, msg.header.stamp.secs)
 
 
 def base_angle_callback(msg):
