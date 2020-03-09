@@ -71,9 +71,9 @@ def setup():
     pygame.display.flip()
 
     rospy.Subscriber('cassiopeia/imu', Imu, imu_callback)
-    rospy.Subscriber('cassiopeia/temperature', Temperature, temperature_callback)
-    rospy.Subscriber('cassiopeia/pressure', FluidPressure, pressure_callback)
-    rospy.Subscriber('cassiopeia/humidity', RelativeHumidity, humidity_callback)
+    rospy.Subscriber('cassiopeia/environmental/temperature', Temperature, temperature_callback)
+    rospy.Subscriber('cassiopeia/environmental/pressure', FluidPressure, pressure_callback)
+    rospy.Subscriber('cassiopeia/environmental/humidity', RelativeHumidity, humidity_callback)
     rospy.Subscriber('cassiopeia/arm_state/base_angle', Quaternion, base_angle_callback)
     rospy.Subscriber('cassiopeia/arm_state/shovel_extension', Vector3, shovel_extension_callback)
 
